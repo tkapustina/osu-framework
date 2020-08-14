@@ -3,7 +3,7 @@
 
 using osu.Framework.Graphics;
 
-namespace osu.Framework.Input.Bindings
+namespace osu.Framework.Input.bindings
 {
     /// <summary>
     /// A drawable that handles key bindings.

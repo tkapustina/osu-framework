@@ -25,7 +25,7 @@ using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.OpenGL;
 using osu.Framework.Input;
-using osu.Framework.Input.Bindings;
+using osu.Framework.Input.bindings;
 using osu.Framework.Input.Handlers;
 using osu.Framework.Logging;
 using osu.Framework.Statistics;
@@ -891,7 +891,7 @@ namespace osu.Framework.Platform
         /// Defines the platform-specific key bindings that will be used by <see cref="PlatformActionContainer"/>.
         /// Should be overridden per-platform to provide native key bindings.
         /// </summary>
-        public virtual IEnumerable<KeyBinding> PlatformKeyBindings => new[]
+        public virtual IEnumerable<KeyBinding> PlatformKeybindings => new[]
         {
             new KeyBinding(new KeyCombination(InputKey.Control, InputKey.X), new PlatformAction(PlatformActionType.Cut)),
             new KeyBinding(new KeyCombination(InputKey.Control, InputKey.C), new PlatformAction(PlatformActionType.Copy)),

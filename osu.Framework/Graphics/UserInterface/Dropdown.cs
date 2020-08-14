@@ -10,7 +10,7 @@ using osu.Framework.Extensions.IEnumerableExtensions;
 using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Sprites;
 using osu.Framework.Input;
-using osu.Framework.Input.Bindings;
+using osu.Framework.Input.bindings;
 using osu.Framework.Input.Events;
 using osuTK.Graphics;
 using osuTK.Input;

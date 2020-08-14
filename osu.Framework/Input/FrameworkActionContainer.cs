@@ -2,13 +2,13 @@
 // See the LICENCE file in the repository root for full licence text.
 
 using System.Collections.Generic;
-using osu.Framework.Input.Bindings;
+using osu.Framework.Input.bindings;
 
 namespace osu.Framework.Input
 {
     internal class FrameworkActionContainer : KeyBindingContainer<FrameworkAction>
     {
-        public override IEnumerable<KeyBinding> DefaultKeyBindings => new[]
+        public override IEnumerable<KeyBinding> DefaultKeybindings => new[]
         {
             new KeyBinding(new[] { InputKey.Control, InputKey.F1 }, FrameworkAction.ToggleDrawVisualiser),
             new KeyBinding(new[] { InputKey.Control, InputKey.F2 }, FrameworkAction.ToggleGlobalStatistics),

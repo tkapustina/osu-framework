@@ -16,10 +16,10 @@ namespace osu.Framework.Bindables
         /// <summary>
         /// Unbinds all bound <see cref="IBindable"/>s.
         /// </summary>
-        void UnbindBindings();
+        void Unbindbindings();
 
         /// <summary>
-        /// Calls <see cref="UnbindEvents"/> and <see cref="UnbindBindings"/>
+        /// Calls <see cref="UnbindEvents"/> and <see cref="Unbindbindings"/>
         /// </summary>
         void UnbindAll();
 

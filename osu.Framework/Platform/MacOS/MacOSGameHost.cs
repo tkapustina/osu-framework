@@ -3,7 +3,7 @@
 
 using System.Collections.Generic;
 using osu.Framework.Input;
-using osu.Framework.Input.Bindings;
+using osu.Framework.Input.bindings;
 using osuTK;
 using osuTK.Graphics.OpenGL;
 
@@ -34,7 +34,7 @@ namespace osu.Framework.Platform.MacOS
                 GL.Finish();
         }
 
-        public override IEnumerable<KeyBinding> PlatformKeyBindings => new[]
+        public override IEnumerable<KeyBinding> PlatformKeybindings => new[]
         {
             new KeyBinding(new KeyCombination(InputKey.Super, InputKey.X), new PlatformAction(PlatformActionType.Cut)),
             new KeyBinding(new KeyCombination(InputKey.Super, InputKey.C), new PlatformAction(PlatformActionType.Copy)),

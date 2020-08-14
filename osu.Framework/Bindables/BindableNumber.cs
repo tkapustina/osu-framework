@@ -258,14 +258,14 @@ namespace osu.Framework.Bindables
             TriggerMaxValueChange(this, false);
         }
 
-        protected void TriggerPrecisionChange(BindableNumber<T> source = null, bool propagateToBindings = true)
+        protected void TriggerPrecisionChange(BindableNumber<T> source = null, bool propagateTobindings = true)
         {
             // check a bound bindable hasn't changed the value again (it will fire its own event)
             T beforePropagation = precision;
 
-            if (propagateToBindings && Bindings != null)
+            if (propagateTobindings && bindings != null)
             {
-                foreach (var b in Bindings)
+                foreach (var b in bindings)
                 {
                     if (b == source) continue;
 
@@ -278,14 +278,14 @@ namespace osu.Framework.Bindables
                 PrecisionChanged?.Invoke(precision);
         }
 
-        protected void TriggerMinValueChange(BindableNumber<T> source = null, bool propagateToBindings = true)
+        protected void TriggerMinValueChange(BindableNumber<T> source = null, bool propagateTobindings = true)
         {
             // check a bound bindable hasn't changed the value again (it will fire its own event)
             T beforePropagation = minValue;
 
-            if (propagateToBindings && Bindings != null)
+            if (propagateTobindings && bindings != null)
             {
-                foreach (var b in Bindings)
+                foreach (var b in bindings)
                 {
                     if (b == source) continue;
 
@@ -298,14 +298,14 @@ namespace osu.Framework.Bindables
                 MinValueChanged?.Invoke(minValue);
         }
 
-        protected void TriggerMaxValueChange(BindableNumber<T> source = null, bool propagateToBindings = true)
+        protected void TriggerMaxValueChange(BindableNumber<T> source = null, bool propagateTobindings = true)
         {
             // check a bound bindable hasn't changed the value again (it will fire its own event)
             T beforePropagation = maxValue;
 
-            if (propagateToBindings && Bindings != null)
+            if (propagateTobindings && bindings != null)
             {
-                foreach (var b in Bindings)
+                foreach (var b in bindings)
                 {
                     if (b == source) continue;
 

@@ -20,7 +20,7 @@ using osu.Framework.Graphics.Shapes;
 using osu.Framework.Graphics.Sprites;
 using osu.Framework.Graphics.UserInterface;
 using osu.Framework.Input;
-using osu.Framework.Input.Bindings;
+using osu.Framework.Input.bindings;
 using osu.Framework.Input.Events;
 using osu.Framework.IO.Stores;
 using osu.Framework.Platform;
@@ -363,7 +363,7 @@ namespace osu.Framework.Testing
             return base.OnKeyDown(e);
         }
 
-        public override IEnumerable<KeyBinding> DefaultKeyBindings => new[]
+        public override IEnumerable<KeyBinding> DefaultKeybindings => new[]
         {
             new KeyBinding(new[] { InputKey.Control, InputKey.F }, TestBrowserAction.Search),
             new KeyBinding(new[] { InputKey.Control, InputKey.R }, TestBrowserAction.Reload), // for macOS

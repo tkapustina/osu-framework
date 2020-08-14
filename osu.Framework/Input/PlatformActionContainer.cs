@@ -3,7 +3,7 @@
 
 using System.Collections.Generic;
 using osu.Framework.Allocation;
-using osu.Framework.Input.Bindings;
+using osu.Framework.Input.bindings;
 using osu.Framework.Platform;
 
 namespace osu.Framework.Input
@@ -24,7 +24,7 @@ namespace osu.Framework.Input
         {
         }
 
-        public override IEnumerable<KeyBinding> DefaultKeyBindings => host.PlatformKeyBindings;
+        public override IEnumerable<KeyBinding> DefaultKeybindings => host.PlatformKeybindings;
 
         protected override bool Prioritised => true;
 

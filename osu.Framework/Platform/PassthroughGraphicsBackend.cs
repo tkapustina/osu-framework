@@ -51,7 +51,7 @@ namespace osu.Framework.Platform
 
             MakeCurrent();
 
-            loadTKBindings();
+            loadTKbindings();
 
             string version = GL.GetString(StringName.Version);
             string versionNumberSubstring = getVersionNumberSubstring(version);
@@ -95,7 +95,7 @@ namespace osu.Framework.Platform
 
         public void SwapBuffers() => Sdl2Native.SDL_GL_SwapWindow(SdlWindowHandle);
 
-        private void loadTKBindings()
+        private void loadTKbindings()
         {
             loadEntryPoints(new osuTK.Graphics.OpenGL.GL());
             loadEntryPoints(new osuTK.Graphics.OpenGL4.GL());
@@ -104,7 +104,7 @@ namespace osu.Framework.Platform
             loadEntryPoints(new GL());
         }
 
-        private unsafe void loadEntryPoints(GraphicsBindingsBase bindings)
+        private unsafe void loadEntryPoints(GraphicsbindingsBase bindings)
         {
             var type = bindings.GetType();
             var pointsInfo = type.GetRuntimeFields().First(x => x.Name == "_EntryPointsInstance");

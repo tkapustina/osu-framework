@@ -6,7 +6,7 @@ using NUnit.Framework;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Shapes;
 using osu.Framework.Input;
-using osu.Framework.Input.Bindings;
+using osu.Framework.Input.bindings;
 using osu.Framework.Input.Events;
 using osu.Framework.Testing;
 using osuTK;
@@ -115,7 +115,7 @@ namespace osu.Framework.Tests.Input
             {
             }
 
-            public override IEnumerable<KeyBinding> DefaultKeyBindings => new[]
+            public override IEnumerable<KeyBinding> DefaultKeybindings => new[]
             {
                 new KeyBinding(InputKey.Up, TestKeyBinding.Binding1),
                 new KeyBinding(InputKey.Down, TestKeyBinding.Binding2),

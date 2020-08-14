@@ -9,7 +9,7 @@ using System.Linq;
 using osu.Framework.Caching;
 using osu.Framework.Lists;
 
-namespace osu.Framework.Bindables
+namespace osu.Framework.Bindables.Test
 {
     public class BindableList<T> : IBindableList<T>, IList<T>, IList
     {
@@ -675,6 +675,12 @@ namespace osu.Framework.Bindables
         }
 
         private void ensureMutationAllowed()
+        {
+            if (Disabled)
+                throw new InvalidOperationException($"Cannot mutate the {nameof(BindableList<T>)} while it is disabled.");
+        }
+
+        private void TR()
         {
             if (Disabled)
                 throw new InvalidOperationException($"Cannot mutate the {nameof(BindableList<T>)} while it is disabled.");

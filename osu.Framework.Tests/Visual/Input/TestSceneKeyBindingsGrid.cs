@@ -11,7 +11,7 @@ using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Shapes;
 using osu.Framework.Graphics.Sprites;
 using osu.Framework.Graphics.UserInterface;
-using osu.Framework.Input.Bindings;
+using osu.Framework.Input.bindings;
 using osu.Framework.Input.Events;
 using osu.Framework.Testing;
 using osuTK;
@@ -20,11 +20,11 @@ using osuTK.Input;
 
 namespace osu.Framework.Tests.Visual.Input
 {
-    public class TestSceneKeyBindingsGrid : ManualInputManagerTestScene
+    public class TestSceneKeybindingsGrid : ManualInputManagerTestScene
     {
         private readonly KeyBindingTester none, noneExact, noneModifiers, unique, all;
 
-        public TestSceneKeyBindingsGrid()
+        public TestSceneKeybindingsGrid()
         {
             Child = new GridContainer
             {
@@ -358,7 +358,7 @@ namespace osu.Framework.Tests.Visual.Input
             {
             }
 
-            public override IEnumerable<KeyBinding> DefaultKeyBindings => new[]
+            public override IEnumerable<KeyBinding> DefaultKeybindings => new[]
             {
                 new KeyBinding(InputKey.A, TestAction.A),
                 new KeyBinding(InputKey.S, TestAction.S),

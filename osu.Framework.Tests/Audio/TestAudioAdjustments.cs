@@ -40,7 +40,7 @@ namespace osu.Framework.Tests.Audio
         }
 
         [Test]
-        public void TestRemoveAllAdjustmentsRemovesExternalBindings([Values] AdjustableProperty type)
+        public void TestRemoveAllAdjustmentsRemovesExternalbindings([Values] AdjustableProperty type)
         {
             var adjustments = new AudioAdjustments();
 

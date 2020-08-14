@@ -12,7 +12,7 @@ using osu.Framework.Input.States;
 using osu.Framework.Logging;
 using osuTK;
 
-namespace osu.Framework.Input.Bindings
+namespace osu.Framework.Input.bindings
 {
     /// <summary>
     /// Maps input actions to custom action data of type <typeparamref name="T"/>. Use in conjunction with <see cref="Drawable"/>s implementing <see cref="IKeyBindingHandler{T}"/>.
@@ -37,7 +37,7 @@ namespace osu.Framework.Input.Bindings
             this.matchingMode = matchingMode;
         }
 
-        private readonly List<KeyBinding> pressedBindings = new List<KeyBinding>();
+        private readonly List<KeyBinding> pressedbindings = new List<KeyBinding>();
 
         private readonly List<T> pressedActions = new List<T>();
 
@@ -113,7 +113,7 @@ namespace osu.Framework.Input.Bindings
 
                 case KeyDownEvent keyDown:
                     if (keyDown.Repeat && !SendRepeats)
-                        return pressedBindings.Count > 0;
+                        return pressedbindings.Count > 0;
 
                     return handleNewPressed(state, KeyCombination.FromKey(keyDown.Key), keyDown.Repeat);
 
@@ -160,7 +160,7 @@ namespace osu.Framework.Input.Bindings
             var pressedCombination = KeyCombination.FromInputState(state, scrollDelta);
 
             bool handled = false;
-            var bindings = (repeat ? KeyBindings : KeyBindings?.Except(pressedBindings)) ?? Enumerable.Empty<KeyBinding>();
+            var bindings = (repeat ? Keybindings : Keybindings?.Except(pressedbindings)) ?? Enumerable.Empty<KeyBinding>();
             var newlyPressed = bindings.Where(m =>
                 m.KeyCombination.Keys.Contains(newKey) // only handle bindings matching current key (not required for correct logic)
                 && m.KeyCombination.IsPressed(pressedCombination, matchingMode));
@@ -176,13 +176,13 @@ namespace osu.Framework.Input.Bindings
             newlyPressed = newlyPressed.OrderByDescending(b => b.KeyCombination.Keys.Length).ToList();
 
             if (!repeat)
-                pressedBindings.AddRange(newlyPressed);
+                pressedbindings.AddRange(newlyPressed);
 
             // exact matching may result in no pressed (new or old) bindings, in which case we want to trigger releases for existing actions
             if (simultaneousMode == SimultaneousBindingMode.None && (matchingMode == KeyCombinationMatchingMode.Exact || matchingMode == KeyCombinationMatchingMode.Modifiers))
             {
                 // only want to release pressed actions if no existing bindings would still remain pressed
-                if (pressedBindings.Count > 0 && !pressedBindings.Any(m => m.KeyCombination.IsPressed(pressedCombination, matchingMode)))
+                if (pressedbindings.Count > 0 && !pressedbindings.Any(m => m.KeyCombination.IsPressed(pressedCombination, matchingMode)))
                     releasePressedActions();
             }
 
@@ -252,13 +252,13 @@ namespace osu.Framework.Input.Bindings
             var pressedCombination = KeyCombination.FromInputState(state);
 
             // we don't want to consider exact matching here as we are dealing with bindings, not actions.
-            var newlyReleased = pressedBindings.Where(b => !b.KeyCombination.IsPressed(pressedCombination, KeyCombinationMatchingMode.Any)).ToList();
+            var newlyReleased = pressedbindings.Where(b => !b.KeyCombination.IsPressed(pressedCombination, KeyCombinationMatchingMode.Any)).ToList();
 
             Trace.Assert(newlyReleased.All(b => b.KeyCombination.Keys.Contains(releasedKey)));
 
             foreach (var binding in newlyReleased)
             {
-                pressedBindings.Remove(binding);
+                pressedbindings.Remove(binding);
                 PropagateReleased(getInputQueue(binding), binding.GetAction<T>());
                 keyBindingQueues[binding].Clear();
             }
@@ -269,7 +269,7 @@ namespace osu.Framework.Input.Bindings
             // we either want multiple release events due to the simultaneous mode, or we only want one when we
             // - were pressed (as an action)
             // - are the last pressed binding with this action
-            if (simultaneousMode == SimultaneousBindingMode.All || pressedActions.Contains(released) && pressedBindings.All(b => !EqualityComparer<T>.Default.Equals(b.GetAction<T>(), released)))
+            if (simultaneousMode == SimultaneousBindingMode.All || pressedActions.Contains(released) && pressedbindings.All(b => !EqualityComparer<T>.Default.Equals(b.GetAction<T>(), released)))
             {
                 foreach (var d in drawables.OfType<IKeyBindingHandler<T>>())
                     d.OnReleased(released);
@@ -306,9 +306,9 @@ namespace osu.Framework.Input.Bindings
     /// </summary>
     public abstract class KeyBindingContainer : Container
     {
-        protected IEnumerable<KeyBinding> KeyBindings;
+        protected IEnumerable<KeyBinding> Keybindings;
 
-        public abstract IEnumerable<KeyBinding> DefaultKeyBindings { get; }
+        public abstract IEnumerable<KeyBinding> DefaultKeybindings { get; }
 
         protected override void LoadComplete()
         {
@@ -318,7 +318,7 @@ namespace osu.Framework.Input.Bindings
 
         protected virtual void ReloadMappings()
         {
-            KeyBindings = DefaultKeyBindings;
+            Keybindings = DefaultKeybindings;
         }
     }
 

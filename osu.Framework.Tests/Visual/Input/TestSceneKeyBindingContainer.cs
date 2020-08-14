@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using NUnit.Framework;
 using osu.Framework.Graphics;
-using osu.Framework.Input.Bindings;
+using osu.Framework.Input.bindings;
 using osu.Framework.Testing;
 
 namespace osu.Framework.Tests.Visual.Input
@@ -14,7 +14,7 @@ namespace osu.Framework.Tests.Visual.Input
     public class TestSceneKeyBindingContainer : FrameworkTestScene
     {
         [Test]
-        public void TestTriggerWithNoKeyBindings()
+        public void TestTriggerWithNoKeybindings()
         {
             bool pressedReceived = false;
             bool releasedReceived = false;
@@ -69,7 +69,7 @@ namespace osu.Framework.Tests.Visual.Input
 
         private class TestKeyBindingContainer : KeyBindingContainer<TestAction>
         {
-            public override IEnumerable<KeyBinding> DefaultKeyBindings => null;
+            public override IEnumerable<KeyBinding> DefaultKeybindings => null;
         }
 
         private enum TestAction

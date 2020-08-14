@@ -9,7 +9,7 @@ using JetBrains.Annotations;
 using osu.Framework.Bindables;
 using osu.Framework.Graphics.Containers;
 using osu.Framework.Input;
-using osu.Framework.Input.Bindings;
+using osu.Framework.Input.bindings;
 using osuTK;
 
 namespace osu.Framework.Graphics.UserInterface

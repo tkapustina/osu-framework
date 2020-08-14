@@ -131,7 +131,7 @@ namespace osu.Framework.Tests.Bindables
         }
 
         [Test]
-        public void TestDisabledChangeViaBindings()
+        public void TestDisabledChangeViabindings()
         {
             original.BeginLease(true);
 
@@ -159,7 +159,7 @@ namespace osu.Framework.Tests.Bindables
         }
 
         [Test]
-        public void TestValueChangeViaBindings()
+        public void TestValueChangeViabindings()
         {
             original.BeginLease(true);
 

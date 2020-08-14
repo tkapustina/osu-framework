@@ -1,10 +1,10 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the MIT Licence.
 // See the LICENCE file in the repository root for full licence text.
 
-namespace osu.Framework.Input.Bindings
+namespace osu.Framework.Input.bindings
 {
     /// <summary>
-    /// A binding of a <see cref="Bindings.KeyCombination"/> to an action.
+    /// A binding of a <see cref="bindings.KeyCombination"/> to an action.
     /// </summary>
     public class KeyBinding
     {

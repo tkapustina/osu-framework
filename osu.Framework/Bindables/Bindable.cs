@@ -151,7 +151,7 @@ namespace osu.Framework.Bindables
             value = Default = defaultValue;
         }
 
-        protected LockedWeakList<Bindable<T>> Bindings { get; private set; }
+        protected LockedWeakList<Bindable<T>> bindings { get; private set; }
 
         void IBindable.BindTo(IBindable them)
         {
@@ -186,7 +186,7 @@ namespace osu.Framework.Bindables
         /// <exception cref="InvalidOperationException">Thrown when attempting to bind to an already bound object.</exception>
         public virtual void BindTo(Bindable<T> them)
         {
-            if (Bindings?.Contains(them) == true)
+            if (bindings?.Contains(them) == true)
                 throw new InvalidOperationException($"This bindable is already bound to the requested bindable ({them}).");
 
             Value = them.Value;
@@ -223,13 +223,13 @@ namespace osu.Framework.Bindables
 
         private void addWeakReference(WeakReference<Bindable<T>> weakReference)
         {
-            if (Bindings == null)
-                Bindings = new LockedWeakList<Bindable<T>>();
+            if (bindings == null)
+                bindings = new LockedWeakList<Bindable<T>>();
 
-            Bindings.Add(weakReference);
+            bindings.Add(weakReference);
         }
 
-        private void removeWeakReference(WeakReference<Bindable<T>> weakReference) => Bindings?.Remove(weakReference);
+        private void removeWeakReference(WeakReference<Bindable<T>> weakReference) => bindings?.Remove(weakReference);
 
         /// <summary>
         /// Parse an object into this instance.
@@ -266,14 +266,14 @@ namespace osu.Framework.Bindables
             TriggerDisabledChange(this, false);
         }
 
-        protected void TriggerValueChange(T previousValue, Bindable<T> source, bool propagateToBindings = true, bool bypassChecks = false)
+        protected void TriggerValueChange(T previousValue, Bindable<T> source, bool propagateTobindings = true, bool bypassChecks = false)
         {
             // check a bound bindable hasn't changed the value again (it will fire its own event)
             T beforePropagation = value;
 
-            if (propagateToBindings && Bindings != null)
+            if (propagateTobindings && bindings != null)
             {
-                foreach (var b in Bindings)
+                foreach (var b in bindings)
                 {
                     if (b == source) continue;
 
@@ -285,14 +285,14 @@ namespace osu.Framework.Bindables
                 ValueChanged?.Invoke(new ValueChangedEvent<T>(previousValue, value));
         }
 
-        protected void TriggerDefaultChange(T previousValue, Bindable<T> source, bool propagateToBindings = true, bool bypassChecks = false)
+        protected void TriggerDefaultChange(T previousValue, Bindable<T> source, bool propagateTobindings = true, bool bypassChecks = false)
         {
             // check a bound bindable hasn't changed the value again (it will fire its own event)
             T beforePropagation = defaultValue;
 
-            if (propagateToBindings && Bindings != null)
+            if (propagateTobindings && bindings != null)
             {
-                foreach (var b in Bindings)
+                foreach (var b in bindings)
                 {
                     if (b == source) continue;
 
@@ -304,14 +304,14 @@ namespace osu.Framework.Bindables
                 DefaultChanged?.Invoke(new ValueChangedEvent<T>(previousValue, defaultValue));
         }
 
-        protected void TriggerDisabledChange(Bindable<T> source, bool propagateToBindings = true, bool bypassChecks = false)
+        protected void TriggerDisabledChange(Bindable<T> source, bool propagateTobindings = true, bool bypassChecks = false)
         {
             // check a bound bindable hasn't changed the value again (it will fire its own event)
             bool beforePropagation = disabled;
 
-            if (propagateToBindings && Bindings != null)
+            if (propagateTobindings && bindings != null)
             {
-                foreach (var b in Bindings)
+                foreach (var b in bindings)
                 {
                     if (b == source) continue;
 
@@ -335,23 +335,23 @@ namespace osu.Framework.Bindables
         /// <summary>
         /// Remove all bound <see cref="Bindable{T}"/>s via <see cref="GetBoundCopy"/> or <see cref="BindTo"/>.
         /// </summary>
-        public void UnbindBindings()
+        public void Unbindbindings()
         {
-            if (Bindings == null)
+            if (bindings == null)
                 return;
 
             // ToArray required as this may be called from an async disposal thread.
-            // This can lead to deadlocks since each child is also enumerating its Bindings.
-            foreach (var b in Bindings.ToArray())
+            // This can lead to deadlocks since each child is also enumerating its bindings.
+            foreach (var b in bindings.ToArray())
                 b.Unbind(this);
 
-            Bindings.Clear();
+            bindings.Clear();
         }
 
-        protected void Unbind(Bindable<T> binding) => Bindings.Remove(binding.weakReference);
+        protected void Unbind(Bindable<T> binding) => bindings.Remove(binding.weakReference);
 
         /// <summary>
-        /// Calls <see cref="UnbindEvents"/> and <see cref="UnbindBindings"/>.
+        /// Calls <see cref="UnbindEvents"/> and <see cref="Unbindbindings"/>.
         /// Also returns any active lease.
         /// </summary>
         public virtual void UnbindAll()
@@ -360,7 +360,7 @@ namespace osu.Framework.Bindables
                 leasedBindable.Return();
 
             UnbindEvents();
-            UnbindBindings();
+            Unbindbindings();
         }
 
         public void UnbindFrom(IUnbindable them)
@@ -437,12 +437,12 @@ namespace osu.Framework.Bindables
             if (isLeased)
                 return true;
 
-            if (Bindings == null)
+            if (bindings == null)
                 return false;
 
             bool found = false;
 
-            foreach (var b in Bindings)
+            foreach (var b in bindings)
             {
                 if (b != source)
                     found |= b.checkForLease(this);

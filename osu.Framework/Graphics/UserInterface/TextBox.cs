@@ -18,7 +18,7 @@ using osu.Framework.Audio;
 using osu.Framework.Bindables;
 using osu.Framework.Development;
 using osu.Framework.Platform;
-using osu.Framework.Input.Bindings;
+using osu.Framework.Input.bindings;
 using osu.Framework.Input.Events;
 using osu.Framework.Timing;
 

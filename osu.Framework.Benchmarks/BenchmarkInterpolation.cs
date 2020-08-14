@@ -12,8 +12,8 @@ namespace osu.Framework.Benchmarks
         [Benchmark]
         public MarginPadding InterpolateMarginPadding()
         {
-            var first = new MarginPadding();
-            var second = new MarginPadding(10);
+            var    first  = new MarginPadding();
+            var    second = new MarginPadding(10);
 
             return Interpolation.ValueAt(0.5, first, second, 0, 1, Easing.OutQuint);
         }

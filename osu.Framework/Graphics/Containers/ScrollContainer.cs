@@ -5,7 +5,7 @@ using System;
 using System.Diagnostics;
 using osu.Framework.Caching;
 using osu.Framework.Input;
-using osu.Framework.Input.Bindings;
+using osu.Framework.Input.bindings;
 using osu.Framework.Input.Events;
 using osu.Framework.Utils;
 using osuTK;

@@ -11,7 +11,7 @@ using osu.Framework.Input.States;
 using osuTK;
 using osuTK.Input;
 
-namespace osu.Framework.Input.Bindings
+namespace osu.Framework.Input.bindings
 {
     /// <summary>
     /// Represent a combination of more than one <see cref="InputKey"/>s.
